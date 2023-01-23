@@ -20,7 +20,9 @@ class Appointment(models.Model):
 
     technician = models.ForeignKey(
         Technician,
-        related_name="appointment"
+        related_name="appointments",
+        on_delete=models.CASCADE,
+
     )
 
     def __str__(self):
