@@ -10,6 +10,7 @@ function CreateAppointmentForm () {
         date: '',
         time: '',
         tech_name: '',
+        reason: '',
     })
     
     const handleSubmit = async (event) => {
@@ -31,6 +32,7 @@ function CreateAppointmentForm () {
                 date: '',
                 time: '',
                 tech_name: '',
+                reason: '',
             });
         }
 
@@ -72,19 +74,19 @@ function CreateAppointmentForm () {
                         <form onSubmit={handleSubmit} id="create-appointment-form">
                             <div className="form-floating mb-3">
                                 <input onChange={handleFormChange} value={formData.vin} placeholder="VIN" required type="text" name="vin" id="vin" className="form-control" />
-                                <label htmlFor="fabric">VIN</label>
+                                <label htmlFor="">VIN</label>
                             </div>
                             <div className="form-floating mb-3">
                                 <input onChange={handleFormChange} value={formData.customer_name} placeholder="Customer Name" required type="text" name="customer_name" id="customer_name" className="form-control" />
-                                <label htmlFor="style">Customer Name</label>
+                                <label htmlFor="customer_name">Customer Name</label>
                             </div>
                             <div className="form-floating mb-3">
                                 <input onChange={handleFormChange} value={formData.date} placeholder="Color" required type="date" name="date" id="date" className="form-control" />
-                                <label htmlFor="color">Date</label>
+                                <label htmlFor="date">Date</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input onChange={handleFormChange} value={formData.time} placeholder="Time" required type="time" name="time" id="time" className="form-control" />
-                                <label htmlFor="color">Time</label>
+                                <input onChange={handleFormChange} value={formData.time} placeholder="Time" required type="text" name="time" id="time" className="form-control" />
+                                <label htmlFor="time">Time</label>
                             </div>
                             <div className="mb-3">
                                 <select onChange={handleFormChange} value={formData.tech_name} required name="tech_name" id="tech_name" className="form-select">
@@ -98,7 +100,7 @@ function CreateAppointmentForm () {
                             </div>
                             <div className="form-floating mb-3">
                                 <input onChange={handleFormChange} value={formData.reason} placeholder="Reason for appointment" required type="text" name="reason" id="reason" className="form-control" />
-                                <label htmlFor="color">Reason</label>
+                                <label htmlFor="reason">Reason</label>
                             </div>
                             <button className="btn btn-primary">Create</button>
                         </form>
