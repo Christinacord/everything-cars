@@ -18,7 +18,7 @@ class Appointment(models.Model):
     time = models.TimeField()
     reason = models.TextField(max_length=500)
 
-    technician = models.ForeignKey(
+    tech_name = models.ForeignKey(
         Technician,
         related_name="appointments",
         on_delete=models.CASCADE,
