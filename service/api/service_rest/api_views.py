@@ -8,16 +8,14 @@ import json
 
 class AutomobileVODetailEncoder(ModelEncoder):
     model = AutomobileVO
-    properties = [
-        "vin",
-    ]
+    properties = ["vin"]
 
-                               
+
 class TechnicianListEncoder(ModelEncoder):
     model = Technician
     properties = [
         "tech_name",
-        "employee_number",
+        "employee_number"
     ]
 
 
@@ -25,17 +23,19 @@ class AppointmentEncoder(ModelEncoder):
     model = Appointment
     properties = [
         "customer_name",
-        "vin",
         "date",
         "time",
         "reason",
         "tech_name",
+        "automobile",
         "id",
     ]
     encoders = {
         "automobile": AutomobileVODetailEncoder(),
         "tech_name": TechnicianListEncoder(),
     }
+    # def get_extra_data(self, o):
+    #     return {"automobile": o.automobile.vin}
 
 
 @require_http_methods(["GET", "POST"])
@@ -50,21 +50,26 @@ def api_list_appointments(request):
         content = json.loads(request.body)
         try:
             tech = content["tech_name"]
-            tech_assigned = Technician.objects.get(tech_name=tech)
+            tech_assigned = Technician.objects.get(employee_number=tech)
             content["tech_name"] = tech_assigned
+
+            vin = content['automobile']
+            automobile = AutomobileVO.objects.get(vin=vin)
+            content["automobile"] = automobile
+
+            appointment = Appointment.objects.create(**content)
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentEncoder,
+                safe=False,
+            )
+
         except Exception:
             return JsonResponse(
                 {"message": "Could not create appointment"},
                  status=400,
             )
-        
-        appointment = Appointment.objects.create(**content)
-        return JsonResponse(
-            appointment,
-            encoder=AppointmentEncoder,
-            safe=False,
-        )
-    
+
 @require_http_methods(["DELETE", "GET"])
 def api_show_appointment(request, pk):
     if request.method == "GET":
@@ -77,7 +82,7 @@ def api_show_appointment(request, pk):
     else:
         count, _ = Appointment.objects.filter(id=pk).delete()
         return JsonResponse({"deleted": count > 0})
-    
+
 
 @require_http_methods(["GET", "POST"])
 def api_list_technicians(request):

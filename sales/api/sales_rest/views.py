@@ -22,7 +22,7 @@ class EmployeeEncoder(ModelEncoder):
 
 class SaleEncoder(ModelEncoder):
     model = Sale
-    properties = ["automobile", "customer", "employee", "price","id"]
+    properties = ["automobile", "customer", "employee", "price", "id"]
 
     encoders = {
         "customer": CustomerEncoder(),
