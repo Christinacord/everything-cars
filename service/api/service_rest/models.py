@@ -2,8 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 class AutomobileVO(models.Model):
-    import_href = models.CharField(max_length=200, unique=True)
-    vin = models.CharField(max_length=17, unique=True)
+    vin = models.CharField(max_length=17)
 
 
 class Technician(models.Model):
@@ -13,10 +12,15 @@ class Technician(models.Model):
 
 class Appointment(models.Model):
     customer_name = models.CharField(max_length=200)
-    vin = models.CharField(max_length=17, unique=True)
+    # vin = models.CharField(max_length=17, unique=True)
     date = models.DateTimeField()
     time = models.TimeField()
     reason = models.TextField(max_length=500)
+    automobile = models.ForeignKey(
+        AutomobileVO,
+        related_name="appointments",
+        on_delete=models.CASCADE,
+    )
 
     tech_name = models.ForeignKey(
         Technician,

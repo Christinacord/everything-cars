@@ -9,37 +9,9 @@ import json
 class AutomobileVODetailEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
-        "import_href",
         "vin",
     ]
 
-
-class AppointmentListEncoder(ModelEncoder):
-    model = Appointment
-    properties = [
-        "customer_name",
-        "vin",
-        "date",
-        "time",
-        "reason",
-    ]
-    encoders = {
-        "automobile": AutomobileVODetailEncoder(),
-    }
-
-
-class AppointmentDetailEncoder(ModelEncoder):
-    model = Appointment
-    properties = [
-        "customer_name",
-        "vin",
-        "date",
-        "time",
-        "reason",
-    ]
-    encoders = {
-        "automobile": AutomobileVODetailEncoder(),
-    }
                                
 class TechnicianListEncoder(ModelEncoder):
     model = Technician
@@ -49,30 +21,47 @@ class TechnicianListEncoder(ModelEncoder):
     ]
 
 
+class AppointmentEncoder(ModelEncoder):
+    model = Appointment
+    properties = [
+        "customer_name",
+        "vin",
+        "date",
+        "time",
+        "reason",
+        "tech_name",
+        "id",
+    ]
+    encoders = {
+        "automobile": AutomobileVODetailEncoder(),
+        "tech_name": TechnicianListEncoder(),
+    }
+
+
 @require_http_methods(["GET", "POST"])
 def api_list_appointments(request):
     if request.method == "GET":
         appointments = Appointment.objects.all()
         return JsonResponse(
             {"appointments": appointments},
-             encoder=AppointmentListEncoder,
+             encoder=AppointmentEncoder,
         )
     else:
         content = json.loads(request.body)
-        # try:
-        tech = content["tech_name"]
-        tech_assigned = Technician.objects.get(tech_name=tech)
-        content["tech_name"] = tech_assigned
-        # except TechnicianListEncoder.DoesNotExist:
-        #     return JsonResponse(
-        #         {"message": "Invalid technician"},
-        #          status=400,
-        #     )
+        try:
+            tech = content["tech_name"]
+            tech_assigned = Technician.objects.get(tech_name=tech)
+            content["tech_name"] = tech_assigned
+        except Exception:
+            return JsonResponse(
+                {"message": "Could not create appointment"},
+                 status=400,
+            )
         
         appointment = Appointment.objects.create(**content)
         return JsonResponse(
             appointment,
-            encoder=AppointmentDetailEncoder,
+            encoder=AppointmentEncoder,
             safe=False,
         )
     
@@ -82,7 +71,7 @@ def api_show_appointment(request, pk):
         appointment = Appointment.objects.get(id=pk)
         return JsonResponse(
             appointment,
-            encoder=AppointmentDetailEncoder,
+            encoder=AppointmentEncoder,
             safe=False,
         )
     else:
