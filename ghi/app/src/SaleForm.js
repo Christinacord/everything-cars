@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function SaleForm() {
     const [automobiles, setAutomobiles] = useState([])
@@ -10,6 +11,7 @@ export default function SaleForm() {
         customer: "",
         price: "",
     })
+    const navigate = useNavigate()
 
     const getAutomobileData = async () => {
         const url = 'http://localhost:8100/api/automobiles/'
@@ -18,8 +20,6 @@ export default function SaleForm() {
         if (response.ok) {
             const data = await response.json()
             setAutomobiles(data.autos)
-            console.log(data)
-            console.log(automobiles)
         }
     }
     const getCustomerData = async () => {
@@ -69,6 +69,11 @@ export default function SaleForm() {
         }
     }
 
+    const handleClick = () => {
+        alert("Success!")
+        navigate('/api/sales')
+    }
+
     const handleChangeName = (e) => {
         const value = e.target.value;
         const inputName = e.target.name;
@@ -93,7 +98,7 @@ export default function SaleForm() {
                                 <option value="">Choose a Automobile</option>
                                 {automobiles.map(automobile => {
                                     return (
-                                        <option key={automobile.id} value={automobile.id}>{automobile.name}</option>
+                                        <option key={automobile.vin} value={automobile.vin}>{automobile.model.name}</option>
                                     )
                                 })}
                             </select>
@@ -122,6 +127,7 @@ export default function SaleForm() {
                             <input onChange={handleChangeName} value={formData.price} placeholder="Price" required type="number" name="price" id="price" className="form-control" />
                             <label htmlFor="price">Price</label>
                         </div>
+                        <button onClick={handleClick} className="btn btn-primary">Create</button>
                     </form>
                 </div>
             </div>
