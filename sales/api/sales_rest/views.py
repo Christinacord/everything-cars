@@ -9,31 +9,28 @@ from django.http import JsonResponse
 
 class AutomobileVoDetailEncoder(ModelEncoder):
     model = AutomobileVO
-    properties = ["vin","model"]
+    properties = ["vin"]
 
 
 class CustomerEncoder(ModelEncoder):
     model = Customer
-    properties = ["name", "address", "phone_number"]
+    properties = ["name", "address", "phone_number", "id"]
 
 class EmployeeEncoder(ModelEncoder):
     model = Employee
-    properties = ["name", "employee_id"]
+    properties = ["name", "employee_id","pk"]
 
-class SaleListEncoder(ModelEncoder):
+class SaleEncoder(ModelEncoder):
     model = Sale
-    properties = ["automobile", "customer", "employee", "price"]
+    properties = ["automobile", "customer", "employee", "price","id"]
+
+    encoders = {
+        "customer": CustomerEncoder(),
+        "automobile": AutomobileVoDetailEncoder(),
+        "employee": EmployeeEncoder(),
+    }
     def get_extra_data(self, o):
-        return {"customer": o.customer.name}
-
-
-class SaleDetailEncoder(ModelEncoder):
-    model = Sale
-    properties = ["automobile", "customer", "employee", "price", ]
-    def get_extra_data(self, o):
-        return {"customer": o.customer.name}
-
-
+        return {"automobile": o.automobile.vin}
 
 @require_http_methods(["GET", "POST"])
 def api_list_sales(request):
@@ -41,25 +38,35 @@ def api_list_sales(request):
         sales = Sale.objects.all()
         return JsonResponse(
             {"sales": sales},
-            encoder=SaleListEncoder,
+            encoder=SaleEncoder,
         )
     else:
         content = json.loads(request.body)
-        # try:
-        #     automobile_href = content["automobile"]
-        #     automobile = AutomobileVO.objects.get(import_href=automobile_href)
-        #     content["automobile"] = automobile
-        # except AutomobileVO.DoesNotExist:
-        #     return JsonResponse(
-        #         {"message": "Invalid Vin"},
-        #         status=400,
-        #     )
-        sale = Sale.objects.create(**content)
-        return JsonResponse(
-            sale,
-            encoder=SaleDetailEncoder,
-            safe=False
-        )
+        try:
+            vin = content['automobile']
+            automobile = AutomobileVO.objects.get(vin=vin)
+            content["automobile"] = automobile
+
+            employee_ID = content["employee"]
+            employee = Employee.objects.get(employee_id=employee_ID)
+            content["employee"] = employee
+
+            id = content["customer"]
+            customer = Customer.objects.get(pk=id)
+            content["customer"] = customer
+
+            sale = Sale.objects.create(**content)
+            return JsonResponse(
+                sale,
+                encoder=SaleEncoder,
+                safe=False
+            )
+        except Exception:
+            return JsonResponse(
+                {"message": "Could not create sale"},
+                status=400
+            )
+
 
 @require_http_methods(["GET", "DELETE"])
 def api_show_sale(request, pk):
@@ -67,7 +74,7 @@ def api_show_sale(request, pk):
         sale = Sale.objects.get(id=pk)
         return JsonResponse(
             sale,
-            encoder=SaleDetailEncoder,
+            encoder=SaleEncoder,
             safe=False,
         )
     else:
