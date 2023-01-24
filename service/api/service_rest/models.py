@@ -8,7 +8,7 @@ class AutomobileVO(models.Model):
 
 class Technician(models.Model):
     tech_name = models.CharField(max_length=150)
-    employee_number = models.CharField(max_length=50, unique=True)
+    employee_number = models.PositiveSmallIntegerField(unique=True)
 
 
 class Appointment(models.Model):
