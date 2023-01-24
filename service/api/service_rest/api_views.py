@@ -30,6 +30,7 @@ class AppointmentEncoder(ModelEncoder):
         "time",
         "reason",
         "tech_name",
+        "automobile",
         "id",
     ]
     encoders = {
@@ -50,20 +51,27 @@ def api_list_appointments(request):
         content = json.loads(request.body)
         try:
             tech = content["tech_name"]
-            tech_assigned = Technician.objects.get(tech_name=tech)
+            tech_assigned = Technician.objects.get(employee_number=tech)
             content["tech_name"] = tech_assigned
+
+            vin = content["automobile"]
+            automobile = AutomobileVO.objects.get(vin=vin)
+            content["automobile"] = automobile
+
+            appointment = Appointment.objects.create(**content)
+            return JsonResponse(
+                appointment,
+                encoder=AppointmentEncoder,
+                safe=False,
+            )
+
         except Exception:
             return JsonResponse(
                 {"message": "Could not create appointment"},
                  status=400,
             )
         
-        appointment = Appointment.objects.create(**content)
-        return JsonResponse(
-            appointment,
-            encoder=AppointmentEncoder,
-            safe=False,
-        )
+        
     
 @require_http_methods(["DELETE", "GET"])
 def api_show_appointment(request, pk):
