@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
-import SaleForm from './SaleForm'
-import SalesList from './SalesList'
-import InventoryList from './InventoryList'
+import SaleForm from './sales/SaleForm'
+import SalesList from './sales/SalesList'
+import AutomobilesList from './inventory/automobiles/AutomobilesList'
+import AutomobileForm from './inventory/automobiles/AutomobileForm';
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="inventory">
-            <Route index element={<InventoryList/>} />
+          <Route path="automobiles">
+            <Route index element={<AutomobilesList/>} />
+            <Route path="new" element={<AutomobileForm />} />
           </Route>
           <Route path="sales">
             <Route index element={<SalesList />} />

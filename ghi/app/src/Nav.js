@@ -24,6 +24,10 @@ function Nav() {
               <button className="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 Inventory
               </button>
+              <ul className="dropdown-menu dropdown-menu-dark">
+                <NavLink className="nav-link" to="/automobiles">Automobile List</NavLink>
+                <NavLink className="nav-link" to="/automobile/new">Create an Automobile</NavLink>
+              </ul>
             </li>
           </ul>
         </div>
