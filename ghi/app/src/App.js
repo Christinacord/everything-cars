@@ -6,6 +6,8 @@ import CreateAppointmentForm from './CreateAppointmentForm';
 import TechnicianList from './Technician';
 import CreateTechnicianForm from './CreateTechnicianForm';
 import ServiceHistory from './ServiceHistory';
+import Manufacturers from './Manufacturers';
+import CreateManufacturerForm from './CreateManufacturerForm';
 
 
 function App() {
@@ -24,6 +26,10 @@ function App() {
               <Route index element={<TechnicianList />} />
           </Route>
           <Route path="/history" element={<ServiceHistory />} />
+          <Route path="/manufacturers">
+              <Route path="new" element={<CreateManufacturerForm />} />
+              <Route index element={<Manufacturers />} />
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>
