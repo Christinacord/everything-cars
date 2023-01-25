@@ -23,7 +23,7 @@ function ServiceHistory() {
             return appointments;
         } else {
             return appointments.filter((appointment) => 
-                appointment.automobile.vin.includes(filterValue)
+                appointment.vin.includes(filterValue)
             );
         }
     };
@@ -36,11 +36,6 @@ function ServiceHistory() {
         <>
             <h1>Service history</h1>
             <input onChange={handleChange} placeholder="Filter For VIN" />
-            <div>
-                {filteredAppointments().map((appointment) => (
-                    <div key={appointment.href}></div>
-                ))}
-            </div>
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -53,10 +48,10 @@ function ServiceHistory() {
                     </tr>
                 </thead>
                 <tbody>
-                    {appointments.map(appointment => {
+                    {filteredAppointments().map(appointment => {
                     return (
                         <tr key={appointment.href}>
-                            <td>{ appointment.automobile.vin }</td>
+                            <td>{ appointment.vin }</td>
                             <td>{ appointment.customer_name }</td>
                             <td>{ appointment.date }</td>
                             <td>{ appointment.time }</td>

@@ -2,10 +2,9 @@ import React, {useEffect, useState } from 'react';
 
 function CreateAppointmentForm () {
     
-    const [automobiles, setAutomobiles] = useState([]);
     const [technicians, setTechnicians] = useState([]);
     const [formData, setFormData] = useState({
-        automobile: '',
+        vin: '',
         customer_name: '',
         date: '',
         time: '',
@@ -27,7 +26,7 @@ function CreateAppointmentForm () {
         const response = await fetch(appointmentUrl, fetchConfig);
         if (response.ok) {
             setFormData({
-                automobile: '',
+                vin: '',
                 customer_name: '',
                 date: '',
                 time: '',
@@ -49,15 +48,11 @@ function CreateAppointmentForm () {
     }
 
     const fetchData = async () => {
-        const url1 = 'http://localhost:8100/api/automobiles/';
-        const url2 = 'http://localhost:8080/api/technicians/';
-        const response1 = await fetch(url1);
-        const response2 = await fetch(url2);
-        if (response1.ok && response2.ok) {
-            const data1 = await response1.json();
-            const data2 = await response2.json();
-            setAutomobiles(data1.automobiles);
-            setTechnicians(data2.technicians);
+        const url = 'http://localhost:8080/api/technicians/';
+        const response = await fetch(url);
+        if (response.ok) {
+            const data = await response.json();
+            setTechnicians(data.technicians);
         }
     }
     
@@ -73,7 +68,7 @@ function CreateAppointmentForm () {
                         <h1>Schedule service appointment</h1>
                         <form onSubmit={handleSubmit} id="create-appointment-form">
                             <div className="form-floating mb-3">
-                                <input onChange={handleFormChange} value={formData.automobile} placeholder="VIN" required type="text" name="automobile" id="automobile" className="form-control" />
+                                <input onChange={handleFormChange} value={formData.vin} placeholder="VIN" required type="text" name="vin" id="vin" className="form-control" />
                                 <label htmlFor="vin">VIN</label>
                             </div>
                             <div className="form-floating mb-3">
