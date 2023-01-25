@@ -3,6 +3,8 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 import AppointmentsList from './Appointments';
 import CreateAppointmentForm from './CreateAppointmentForm';
+import TechnicianList from './Technician';
+import CreateTechnicianForm from './CreateTechnicianForm';
 
 
 function App() {
@@ -15,6 +17,10 @@ function App() {
           <Route path="/appointments">
             <Route path="new" element={<CreateAppointmentForm />} />
             <Route index element={<AppointmentsList />} />
+          </Route>
+          <Route path="/technicians">
+              <Route path="new" element={<CreateTechnicianForm />} />
+              <Route index element={<TechnicianList />} />
           </Route>
         </Routes>
       </div>
