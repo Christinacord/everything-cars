@@ -3,9 +3,10 @@ import { useEffect, useState } from "react"
 export default function SalesList() {
     const [sales, setSales] = useState([])
     const [filterValue, setFilterValue] = useState("")
+    const [employees, setEmployees] = useState([])
     const [filterKey, setFilterKey] = useState("employee")
 
-    const getData = async () => {
+    const getSalesData = async () => {
         const response = await fetch("http://localhost:8090/api/sales/")
 
         if (response.ok) {
@@ -13,9 +14,18 @@ export default function SalesList() {
             setSales(data.sales)
         }
     }
+    const getEmployeesData = async () => {
+        const response = await fetch("http://localhost:8090/api/employees/")
+
+        if (response.ok) {
+            const data = await response.json()
+            setEmployees(data.employees)
+        }
+    }
 
     useEffect(() => {
-        getData()
+        getSalesData()
+        getEmployeesData()
     }, [])
 
     const handleDeleteSale = async (id) => {
@@ -26,7 +36,7 @@ export default function SalesList() {
         }
         const response = await fetch(url, fetchConfig)
         if (response.ok) {
-            getData()
+            getSalesData()
         }
     }
 
@@ -44,7 +54,7 @@ export default function SalesList() {
             return sales
         } else {
             return sales.filter((sale) =>
-                sale.employee.name.toLowerCase().includes(filterValue)
+                sale.employee.name.includes(filterValue)
             )
         }
     }
@@ -52,7 +62,16 @@ export default function SalesList() {
     return (
         <>
             <h1>Sales</h1>
-            <input onChange={handleChange} placeholder="Filter for Sale Person" />
+            <form>
+                <select onChange={handleChange} placeholder="Filter for Sale Person" className="form-select" >
+                    <option>Select a Sales Person</option>
+                    {employees.map(employee => {
+                        return (
+                            <option key={employee.pk} value={employee.name}>{employee.name}</option>
+                        )
+                    })}
+                </select>
+            </form>
             <table className="table table-striped">
                 <thead>
                     <tr>

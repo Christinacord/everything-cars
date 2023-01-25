@@ -21,12 +21,16 @@ function Nav() {
               </ul>
             </li>
             <li className="nav-item dropdown">
-              <button className="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Inventory
+              <button type="button" class="btn btn-danger">Inventory</button>
+              <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
               </button>
-              <ul className="dropdown-menu dropdown-menu-dark">
-                <NavLink className="nav-link" to="/automobiles">Automobile List</NavLink>
-                <NavLink className="nav-link" to="/automobile/new">Create an Automobile</NavLink>
+              <ul className="dropdown-menu">
+                <NavLink className="nav-link dropdown-item" to="/automobiles">Automobile List</NavLink>
+                <NavLink className="nav-link dropdown-item" to="/automobiles/new">Create an Automobile</NavLink>
+                <li><hr class="dropdown-divider"/></li>
+                <NavLink className="nav-link dropdown-item" to="/vehicles">Vehicle Model List</NavLink>
+                <NavLink className="nav-link dropdown-item" to="/vehicles/new">Create a Vehicle Model</NavLink>
               </ul>
             </li>
           </ul>
