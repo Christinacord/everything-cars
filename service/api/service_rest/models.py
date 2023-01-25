@@ -12,8 +12,8 @@ class Technician(models.Model):
 
 class Appointment(models.Model):
     customer_name = models.CharField(max_length=200)
-    date = models.DateTimeField()
-    time = models.CharField(max_length=10)
+    date = models.DateField()
+    time = models.TimeField(max_length=10)
     reason = models.TextField(max_length=500)
     automobile = models.ForeignKey(
         AutomobileVO,

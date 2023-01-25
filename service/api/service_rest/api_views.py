@@ -70,7 +70,6 @@ def api_list_appointments(request):
                  status=400,
             )
         
-        
     
 @require_http_methods(["DELETE", "GET"])
 def api_show_appointment(request, pk):

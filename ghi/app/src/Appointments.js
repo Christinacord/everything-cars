@@ -13,6 +13,17 @@ function AppointmentsList() {
         }
     }
 
+    const handleAppointment = async (id) => {
+        const url = `http://localhost:8080${id}`;
+        const fetchConfig = {
+            method: "delete"
+        }
+        const response = await fetch(url, fetchConfig)
+        if (response.ok) {
+            fetchData()
+        }
+    };
+
     useEffect(() => {
         fetchData();
       }, []);
@@ -42,7 +53,7 @@ function AppointmentsList() {
                             <td>{ appointment.time }</td>
                             <td>{ appointment.tech_name.tech_name }</td>
                             <td>{ appointment.reason }</td>
-                            <td><button>Placeholder</button></td>
+                            <td><button className="btn btn-danger"onClick={() => handleAppointment(appointment.href)}>Cancel</button><button className="btn btn-success" onClick={() => handleAppointment(appointment.href)}>Finished</button></td>
                         </tr>
                     );
                     })}

@@ -5,7 +5,7 @@ function CreateAppointmentForm () {
     const [automobiles, setAutomobiles] = useState([]);
     const [technicians, setTechnicians] = useState([]);
     const [formData, setFormData] = useState({
-        vin: '',
+        automobile: '',
         customer_name: '',
         date: '',
         time: '',
@@ -27,7 +27,7 @@ function CreateAppointmentForm () {
         const response = await fetch(appointmentUrl, fetchConfig);
         if (response.ok) {
             setFormData({
-                vin: '',
+                automobile: '',
                 customer_name: '',
                 date: '',
                 time: '',
@@ -73,8 +73,8 @@ function CreateAppointmentForm () {
                         <h1>Schedule service appointment</h1>
                         <form onSubmit={handleSubmit} id="create-appointment-form">
                             <div className="form-floating mb-3">
-                                <input onChange={handleFormChange} value={formData.vin} placeholder="VIN" required type="text" name="vin" id="vin" className="form-control" />
-                                <label htmlFor="">VIN</label>
+                                <input onChange={handleFormChange} value={formData.automobile} placeholder="VIN" required type="text" name="automobile" id="automobile" className="form-control" />
+                                <label htmlFor="vin">VIN</label>
                             </div>
                             <div className="form-floating mb-3">
                                 <input onChange={handleFormChange} value={formData.customer_name} placeholder="Customer Name" required type="text" name="customer_name" id="customer_name" className="form-control" />

@@ -6,11 +6,10 @@ from datetime import datetime, date, time
 
 class DateEncoder(JSONEncoder):
     def default(self, o):
-        if isinstance(o, datetime, date, time):
+        if isinstance(o, (datetime, date, time)):
             return o.isoformat()
         else:
             return super().default(o)
-
 
 
 class QuerySetEncoder(JSONEncoder):
@@ -19,7 +18,6 @@ class QuerySetEncoder(JSONEncoder):
             return list(o)
         else:
             return super().default(o)
-
 
 
 class ModelEncoder(DateEncoder, QuerySetEncoder, JSONEncoder):
