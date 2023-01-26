@@ -32,7 +32,7 @@ function VehicleModels() {
                         return (
                             <tr key={model.href}>
                                 <td>{model.name}</td>
-                                <td><img src={model.picture_url} alt="Car" className="img-thumbnail" /></td>
+                                <td><img src={model.picture_url} alt="Car" className="img-thumbnail" width="200" height="220" /></td>
                             </tr>
                         )
                     })}
