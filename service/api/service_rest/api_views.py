@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
-from .models import AutomobileVO, Appointment, Technician
+from .models import Appointment, Technician
 from django.http import JsonResponse
 import json
-from .encoders import AppointmentEncoder, TechnicianEncoder, AutomobileVOEncoder
+from .encoders import AppointmentEncoder, TechnicianEncoder
 
 @require_http_methods(["GET", "POST"])
 def api_list_appointments(request):
@@ -20,9 +20,6 @@ def api_list_appointments(request):
             tech_assigned = Technician.objects.get(employee_number=tech)
             content["tech_name"] = tech_assigned
 
-            # vin = content["vin"]
-            # existing_vin = AutomobileVO.objects.get(vin=vin)
-            # content["vin"] = existing_vin
 
             appointment = Appointment.objects.create(**content)
             return JsonResponse(
