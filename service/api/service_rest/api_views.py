@@ -27,7 +27,6 @@ def api_list_appointments(request):
                 encoder=AppointmentEncoder,
                 safe=False,
             )
-
         except:
             response = JsonResponse(
                 {"message": "Could not create the appointment"},

@@ -4,7 +4,6 @@ function Manufacturers() {
     
     const [manufacturers, setManufacturers] = useState([])
 
-    // get the data - list of manufacturers
     const fetchData = async () => {
         const url = 'http://localhost:8100/api/manufacturers/';
         const response = await fetch(url);
