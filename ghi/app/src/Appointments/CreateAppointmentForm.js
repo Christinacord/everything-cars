@@ -81,7 +81,7 @@ function CreateAppointmentForm () {
                             </div>
                             <div className="form-floating mb-3">
                                 <input onChange={handleFormChange} value={formData.time} placeholder="Time" required type="text" name="time" id="time" className="form-control" />
-                                <label htmlFor="time">Time</label>
+                                <label htmlFor="time">Time HH:MM</label>
                             </div>
                             <div className="mb-3">
                                 <select onChange={handleFormChange} value={formData.tech_name} required name="tech_name" id="tech_name" className="form-select">
