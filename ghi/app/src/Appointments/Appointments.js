@@ -4,6 +4,7 @@ import React, {useEffect, useState } from 'react';
 function AppointmentsList() {
     
     const [appointments, setAppointments] = useState([])
+    const [automobiles, setAutomobiles] = useState([])
 
     const fetchData = async () => {
         const url = 'http://localhost:8080/api/appointments/';
@@ -11,6 +12,17 @@ function AppointmentsList() {
         if (response.ok) {
             const data = await response.json();
             setAppointments(data.appointments);
+        }
+    }
+
+    const fetchAutomobiles = async () => {
+        const url = 'http://localhost:8100/api/automobiles/';
+        const response = await fetch(url);
+        if (response.ok) {
+            const data = await response.json();
+            const vinlist = []
+            data.autos.map((automobile) => vinlist.push(automobile.vin))
+            setAutomobiles(vinlist);
         }
     }
 
@@ -25,10 +37,18 @@ function AppointmentsList() {
         }
     };
 
-
     useEffect(() => {
         fetchData();
+        fetchAutomobiles();
       }, []);
+
+    const isVip = (vin) => {
+        if (automobiles.includes(vin)) {
+            return "VIP"
+        } else {
+            return ""
+        }  
+    }
     
     return (
         <>
@@ -50,6 +70,7 @@ function AppointmentsList() {
                     {appointments.map(appointment => {
                     return (
                         <tr key={appointment.href}>
+                            <td>{ isVip(appointment.vin) }</td>
                             <td>{ appointment.vin }</td>
                             <td>{ appointment.customer_name }</td>
                             <td>{ appointment.date }</td>
