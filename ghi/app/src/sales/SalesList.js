@@ -4,7 +4,6 @@ export default function SalesList() {
     const [sales, setSales] = useState([])
     const [filterValue, setFilterValue] = useState("")
     const [employees, setEmployees] = useState([])
-    const [filterKey, setFilterKey] = useState("employee")
 
     const getSalesData = async () => {
         const response = await fetch("http://localhost:8090/api/sales/")
@@ -30,7 +29,6 @@ export default function SalesList() {
 
     const handleDeleteSale = async (id) => {
         const url = `http://localhost:8090/api/sales/${id}/`
-        console.log(url)
         const fetchConfig = {
             method: 'delete',
         }
@@ -43,11 +41,6 @@ export default function SalesList() {
     const handleChange = (e) => {
         setFilterValue(e.target.value)
     }
-
-    // const handleKeyChange = (e) => {
-    //     setFilterKey(e.target.value)
-    // }
-
 
     const filteredSales = () => {
         if (filterValue === " ") {
@@ -94,9 +87,7 @@ export default function SalesList() {
                                 <td>{sale.automobile}</td>
                                 <td>{sale.price}</td>
                             </tr>
-
                         )
-
                     })}
                 </tbody>
             </table>

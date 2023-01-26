@@ -8,7 +8,6 @@ export default function AutomobilesList() {
 
         if (response.ok) {
             const data = await response.json()
-            console.log(data)
             setAutomobiles(data.autos)
         }
     }
@@ -19,7 +18,7 @@ export default function AutomobilesList() {
 
     return(
         <>
-        <h1>Create an Automobile</h1>
+        <h1>List of Automobiles</h1>
         <table className="table table-striped">
             <thead>
                 <tr>

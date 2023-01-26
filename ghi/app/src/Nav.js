@@ -12,25 +12,40 @@ function Nav() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item dropdown">
-              <button className="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              <a className="nav-link dropdown-toggle"  id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" >
                 Sales
-              </button>
+              </a>
               <ul className="dropdown-menu dropdown-menu-dark">
                 <NavLink className="nav-link" to="/sales">Sales List</NavLink>
                 <NavLink className="nav-link" to="/sales/new">Create a Sale Record</NavLink>
               </ul>
             </li>
             <li className="nav-item dropdown">
-              <button type="button" class="btn btn-danger">Inventory</button>
-              <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="visually-hidden">Toggle Dropdown</span>
-              </button>
-              <ul className="dropdown-menu">
-                <NavLink className="nav-link dropdown-item" to="/automobiles">Automobile List</NavLink>
-                <NavLink className="nav-link dropdown-item" to="/automobiles/new">Create an Automobile</NavLink>
-                <li><hr class="dropdown-divider"/></li>
-                <NavLink className="nav-link dropdown-item" to="/vehicles">Vehicle Model List</NavLink>
-                <NavLink className="nav-link dropdown-item" to="/vehicles/new">Create a Vehicle Model</NavLink>
+              <a className="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" >
+                Inventory
+              </a>
+              <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                <NavLink className="nav-link " to="/automobiles">Automobile List</NavLink>
+                <NavLink className="nav-link " to="/automobiles/new">Create an Automobile</NavLink>
+                <li><hr className="dropdown-divider"/></li>
+                <NavLink className="nav-link " to="/vehicles">Vehicle Model List</NavLink>
+                <NavLink className="nav-link " to="/vehicles/new">Create a Vehicle Model</NavLink>
+              </ul>
+            </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle"  id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" >
+                Sales People
+              </a>
+              <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                <NavLink className="nav-link" to="/employees/new">Create an Employee</NavLink>
+              </ul>
+            </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle"  id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" >
+                Customers
+              </a>
+              <ul className="dropdown-menu dropdown-menu-dark">
+                <NavLink className="nav-link" to="/customers/new">Create an Customer</NavLink>
               </ul>
             </li>
           </ul>

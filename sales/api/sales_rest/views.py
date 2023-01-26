@@ -1,58 +1,37 @@
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 from .models import Customer, Employee, Sale, AutomobileVO
-from common.json import ModelEncoder
+from .encoders import CustomerEncoder, EmployeeEncoder, SaleEncoder
 import json
 from django.http import JsonResponse
-
-# Create your views here.
-
-class AutomobileVoDetailEncoder(ModelEncoder):
-    model = AutomobileVO
-    properties = ["vin"]
-
-
-class CustomerEncoder(ModelEncoder):
-    model = Customer
-    properties = ["name", "address", "phone_number", "id"]
-
-class EmployeeEncoder(ModelEncoder):
-    model = Employee
-    properties = ["name", "employee_id","pk"]
-
-class SaleEncoder(ModelEncoder):
-    model = Sale
-    properties = ["automobile", "customer", "employee", "price", "id"]
-
-    encoders = {
-        "customer": CustomerEncoder(),
-        "automobile": AutomobileVoDetailEncoder(),
-        "employee": EmployeeEncoder(),
-    }
-    def get_extra_data(self, o):
-        return {"automobile": o.automobile.vin}
 
 @require_http_methods(["GET", "POST"])
 def api_list_sales(request):
     if request.method == "GET":
-        sales = Sale.objects.all()
-        return JsonResponse(
-            {"sales": sales},
-            encoder=SaleEncoder,
-        )
+        try:
+            sales = Sale.objects.all()
+            return JsonResponse(
+                {"sales": sales},
+                encoder=SaleEncoder,
+            )
+        except Sale.DoesNotExist:
+            return JsonResponse(
+                {"error": "Sale do not exist"},
+                status=404
+            )
     else:
         content = json.loads(request.body)
         try:
-            vin = content['automobile']
-            automobile = AutomobileVO.objects.get(vin=vin)
+            vin1 = content['automobile']
+            automobile = AutomobileVO.objects.get(vin=vin1)
             content["automobile"] = automobile
 
             employee_ID = content["employee"]
             employee = Employee.objects.get(employee_id=employee_ID)
             content["employee"] = employee
 
-            id = content["customer"]
-            customer = Customer.objects.get(pk=id)
+            id2 = content["customer"]
+            customer = Customer.objects.get(id=id2)
             content["customer"] = customer
 
             sale = Sale.objects.create(**content)
@@ -67,16 +46,21 @@ def api_list_sales(request):
                 status=400
             )
 
-
 @require_http_methods(["GET", "DELETE"])
 def api_show_sale(request, pk):
     if request.method == "GET":
-        sale = Sale.objects.get(id=pk)
-        return JsonResponse(
-            sale,
-            encoder=SaleEncoder,
-            safe=False,
-        )
+        try:
+            sale = Sale.objects.get(id=pk)
+            return JsonResponse(
+                sale,
+                encoder=SaleEncoder,
+                safe=False,
+            )
+        except Sale.DoesNotExist:
+            return JsonResponse(
+                {"error": "Sale do not exist"},
+                status=404
+            )
     else:
         count, _ = Sale.objects.filter(id=pk).delete()
         return JsonResponse({"deleted": count > 0})
@@ -84,11 +68,17 @@ def api_show_sale(request, pk):
 @require_http_methods(["GET","POST"])
 def api_list_customers(request):
     if request.method == "GET":
-        customer = Customer.objects.all()
-        return JsonResponse(
-            {"customers": customer},
-            encoder=CustomerEncoder,
-        )
+        try:
+            customer = Customer.objects.all()
+            return JsonResponse(
+                {"customers": customer},
+                encoder=CustomerEncoder,
+            )
+        except Customer.DoesNotExist:
+            return JsonResponse(
+                {"message": "Customer do not exist"},
+                status=404
+            )
     else:
         try:
             content=json.loads(request.body)
@@ -182,7 +172,7 @@ def api_show_employee(request, pk):
             )
         except Employee.DoesNotExist:
             return JsonResponse(
-                {"message": "Does not exist"},
+                {"message": " Employee Does not exist"},
                 status=404
             )
     else:
@@ -199,5 +189,5 @@ def api_show_employee(request, pk):
         except Employee.DoesNotExist:
             return JsonResponse(
                 {"message": "Does not exist"},
-                status=400
+                status=404
             )

@@ -71,7 +71,7 @@ export default function SaleForm() {
 
     const handleClick = () => {
         alert("Success!")
-        navigate('/api/sales')
+        navigate('/sales')
     }
 
     const handleChangeName = (e) => {
@@ -127,7 +127,7 @@ export default function SaleForm() {
                             <input onChange={handleChangeName} value={formData.price} placeholder="Price" required type="number" name="price" id="price" className="form-control" />
                             <label htmlFor="price">Price</label>
                         </div>
-                        <button onClick={handleClick} className="btn btn-primary">Create</button>
+                        <button onChange={handleClick} className="btn btn-primary">Create</button>
                     </form>
                 </div>
             </div>
