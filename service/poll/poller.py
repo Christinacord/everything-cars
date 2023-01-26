@@ -5,12 +5,12 @@ import time
 import json
 import requests
 
+
 sys.path.append("")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "service_project.settings")
 django.setup()
 
-# Import models from service_rest, here.
-# from service_rest.models import Something
+
 from service_rest.models import AutomobileVO
 
 
@@ -21,6 +21,7 @@ def get_automobiles():
         AutomobileVO.objects.update_or_create(
             defaults={"vin": automobile["vin"]},
         )
+
 
 def poll():
     while True:

@@ -12,15 +12,10 @@ class Technician(models.Model):
 
 class Appointment(models.Model):
     customer_name = models.CharField(max_length=200)
-    # vin = models.CharField(max_length=17, unique=True)
-    date = models.DateTimeField()
-    time = models.CharField(max_length=10)
+    date = models.DateField()
+    time = models.TimeField(max_length=10)
     reason = models.TextField(max_length=500)
-    automobile = models.ForeignKey(
-        AutomobileVO,
-        related_name="appointments",
-        on_delete=models.CASCADE,
-    )
+    vin = models.CharField(max_length=17)
 
     tech_name = models.ForeignKey(
         Technician,
