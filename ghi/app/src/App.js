@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
-import AppointmentsList from './Appointments';
-import CreateAppointmentForm from './CreateAppointmentForm';
-import TechnicianList from './Technician';
-import CreateTechnicianForm from './CreateTechnicianForm';
-import ServiceHistory from './ServiceHistory';
-import Manufacturers from './Manufacturers';
-import CreateManufacturerForm from './CreateManufacturerForm';
+import AppointmentsList from './Appointments/Appointments';
+import CreateAppointmentForm from './Appointments/CreateAppointmentForm';
+import TechnicianList from './Technicians/Technician';
+import CreateTechnicianForm from './Technicians/CreateTechnicianForm';
+import ServiceHistory from './Appointments/ServiceHistory';
+import Manufacturers from './Manufacturers/Manufacturers';
+import CreateManufacturerForm from './Manufacturers/CreateManufacturerForm';
 
 
 function App() {

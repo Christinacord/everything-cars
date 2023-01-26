@@ -1,5 +1,6 @@
 import React, {useEffect, useState } from 'react';
 
+
 function AppointmentsList() {
     
     const [appointments, setAppointments] = useState([])
@@ -13,8 +14,8 @@ function AppointmentsList() {
         }
     }
 
-    const handleAppointment = async (id) => {
-        const url = `http://localhost:8080${id}`;
+    const handleAppointment = async (href) => {
+        const url = `http://localhost:8080${href}`;
         const fetchConfig = {
             method: "delete"
         }
@@ -23,6 +24,7 @@ function AppointmentsList() {
             fetchData()
         }
     };
+
 
     useEffect(() => {
         fetchData();
@@ -34,6 +36,7 @@ function AppointmentsList() {
             <table className="table table-striped">
                 <thead>
                     <tr>
+                        <th>VIP</th>
                         <th>VIN</th>
                         <th>Customer Name</th>
                         <th>Date</th>
@@ -47,7 +50,7 @@ function AppointmentsList() {
                     {appointments.map(appointment => {
                     return (
                         <tr key={appointment.href}>
-                            <td>{ appointment.automobile.vin }</td>
+                            <td>{ appointment.vin }</td>
                             <td>{ appointment.customer_name }</td>
                             <td>{ appointment.date }</td>
                             <td>{ appointment.time }</td>
