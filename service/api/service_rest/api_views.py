@@ -20,7 +20,6 @@ def api_list_appointments(request):
             tech_assigned = Technician.objects.get(employee_number=tech)
             content["tech_name"] = tech_assigned
 
-
             appointment = Appointment.objects.create(**content)
             return JsonResponse(
                 appointment,
