@@ -10,7 +10,7 @@ export default function VehicleModelForm() {
 
     const getManufacturerData = async () => {
         const url = "http://localhost:8100/api/manufacturers/"
-        const response = await fetch (url)
+        const response = await fetch(url)
 
         if (response.ok) {
             const data = await response.json()
@@ -18,7 +18,7 @@ export default function VehicleModelForm() {
         }
     }
 
-    useEffect (() => {
+    useEffect(() => {
         getManufacturerData()
     }, [])
 
@@ -29,7 +29,7 @@ export default function VehicleModelForm() {
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(formData),
-            headers:{
+            headers: {
                 'Content-Type': 'application/json'
             }
         }

@@ -1,7 +1,7 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function TechnicianList() {
-    
+
     const [technicians, setTechnicians] = useState([])
 
     const fetchData = async () => {
@@ -12,10 +12,10 @@ function TechnicianList() {
             setTechnicians(data.technicians);
         }
     }
-    
+
     useEffect(() => {
         fetchData();
-      }, []);
+    }, []);
 
     return (
         <>
@@ -29,10 +29,10 @@ function TechnicianList() {
                 </thead>
                 <tbody>
                     {technicians.map(technician => {
-                        return(
+                        return (
                             <tr key={technician.employee_number}>
-                                <td>{ technician.tech_name }</td>
-                                <td>{ technician.employee_number }</td>
+                                <td>{technician.tech_name}</td>
+                                <td>{technician.employee_number}</td>
                             </tr>
                         )
                     })}

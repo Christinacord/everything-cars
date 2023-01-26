@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function CreateTechnicianForm() {
-    
+
     const [formData, setFormData] = useState({
         tech_name: '',
         employee_number: '',

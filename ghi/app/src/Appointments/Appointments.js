@@ -1,8 +1,8 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 function AppointmentsList() {
-    
+
     const [appointments, setAppointments] = useState([])
     const [automobiles, setAutomobiles] = useState([])
 
@@ -40,16 +40,16 @@ function AppointmentsList() {
     useEffect(() => {
         fetchData();
         fetchAutomobiles();
-      }, []);
+    }, []);
 
     const isVip = (vin) => {
         if (automobiles.includes(vin)) {
             return "VIP"
         } else {
             return ""
-        }  
+        }
     }
-    
+
     return (
         <>
             <h1>Service appointments</h1>
@@ -68,23 +68,23 @@ function AppointmentsList() {
                 </thead>
                 <tbody>
                     {appointments.map(appointment => {
-                    return (
-                        <tr key={appointment.href}>
-                            <td>{ isVip(appointment.vin) }</td>
-                            <td>{ appointment.vin }</td>
-                            <td>{ appointment.customer_name }</td>
-                            <td>{ appointment.date }</td>
-                            <td>{ appointment.time }</td>
-                            <td>{ appointment.tech_name.tech_name }</td>
-                            <td>{ appointment.reason }</td>
-                            <td><button className="btn btn-danger"onClick={() => handleAppointment(appointment.href)}>Cancel</button><button className="btn btn-success" onClick={() => handleAppointment(appointment.href)}>Finished</button></td>
-                        </tr>
-                    );
+                        return (
+                            <tr key={appointment.href}>
+                                <td>{isVip(appointment.vin)}</td>
+                                <td>{appointment.vin}</td>
+                                <td>{appointment.customer_name}</td>
+                                <td>{appointment.date}</td>
+                                <td>{appointment.time}</td>
+                                <td>{appointment.tech_name.tech_name}</td>
+                                <td>{appointment.reason}</td>
+                                <td><button className="btn btn-danger" onClick={() => handleAppointment(appointment.href)}>Cancel</button><button className="btn btn-success" onClick={() => handleAppointment(appointment.href)}>Finished</button></td>
+                            </tr>
+                        );
                     })}
                 </tbody>
             </table>
         </>
-        
+
     );
 }
 

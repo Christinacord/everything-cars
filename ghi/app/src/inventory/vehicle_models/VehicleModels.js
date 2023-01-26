@@ -1,7 +1,7 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function VehicleModels() {
-    
+
     const [models, setModels] = useState([])
 
     const fetchData = async () => {
@@ -15,8 +15,8 @@ function VehicleModels() {
 
     useEffect(() => {
         fetchData();
-      }, []);
-    
+    }, []);
+
     return (
         <>
             <h1>Vehicle models</h1>
@@ -31,8 +31,8 @@ function VehicleModels() {
                     {models.map(model => {
                         return (
                             <tr key={model.href}>
-                                <td>{ model.name }</td>
-                                <td><img src={ model.picture_url } alt="Car" className="img-thumbnail" /></td>
+                                <td>{model.name}</td>
+                                <td><img src={model.picture_url} alt="Car" className="img-thumbnail" /></td>
                             </tr>
                         )
                     })}

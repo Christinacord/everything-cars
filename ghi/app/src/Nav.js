@@ -12,7 +12,7 @@ function Nav() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle"  id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" >
+              <a className="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" >
                 Sales
               </a>
               <ul className="dropdown-menu dropdown-menu-dark">
@@ -27,7 +27,7 @@ function Nav() {
               <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 <NavLink className="nav-link " to="/automobiles">Automobile List</NavLink>
                 <NavLink className="nav-link " to="/automobiles/new">Create an Automobile</NavLink>
-                <li><hr className="dropdown-divider"/></li>
+                <li><hr className="dropdown-divider" /></li>
                 <NavLink className="nav-link " to="/vehicles">Vehicle Model List</NavLink>
                 <NavLink className="nav-link " to="/vehicles/new">Create a Vehicle Model</NavLink>
                 <NavLink className="nav-link" to="/manufacturers">Manufacturers</NavLink>
@@ -35,7 +35,7 @@ function Nav() {
               </ul>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle"  id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" >
+              <a className="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" >
                 Sales People
               </a>
               <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -43,7 +43,7 @@ function Nav() {
               </ul>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle"  id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" >
+              <a className="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" >
                 Customers
               </a>
               <ul className="dropdown-menu dropdown-menu-dark">

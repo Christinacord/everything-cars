@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 function ServiceHistory() {
-    
+
     const [appointments, setAppointments] = useState([]);
     const [filterValue, setFilterValue] = useState(" ");
 
@@ -22,15 +22,15 @@ function ServiceHistory() {
         if (filterValue === " ") {
             return appointments;
         } else {
-            return appointments.filter((appointment) => 
+            return appointments.filter((appointment) =>
                 appointment.vin.toLowerCase().includes(filterValue)
             );
         }
     };
-    
+
     useEffect(() => {
         appointmentsData();
-      }, []);
+    }, []);
 
     return (
         <>
@@ -49,16 +49,16 @@ function ServiceHistory() {
                 </thead>
                 <tbody>
                     {filteredAppointments().map(appointment => {
-                    return (
-                        <tr key={appointment.href}>
-                            <td>{ appointment.vin }</td>
-                            <td>{ appointment.customer_name }</td>
-                            <td>{ appointment.date }</td>
-                            <td>{ appointment.time }</td>
-                            <td>{ appointment.tech_name.tech_name }</td>
-                            <td>{ appointment.reason }</td>
-                        </tr>
-                    );
+                        return (
+                            <tr key={appointment.href}>
+                                <td>{appointment.vin}</td>
+                                <td>{appointment.customer_name}</td>
+                                <td>{appointment.date}</td>
+                                <td>{appointment.time}</td>
+                                <td>{appointment.tech_name.tech_name}</td>
+                                <td>{appointment.reason}</td>
+                            </tr>
+                        );
                     })}
                 </tbody>
             </table>

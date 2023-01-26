@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 function Manufacturers() {
-    
+
     const [manufacturers, setManufacturers] = useState([])
 
     const fetchData = async () => {
@@ -15,8 +15,8 @@ function Manufacturers() {
 
     useEffect(() => {
         fetchData();
-      }, []);
-    
+    }, []);
+
     return (
         <>
             <h1>Manufacturers</h1>
@@ -28,11 +28,11 @@ function Manufacturers() {
                 </thead>
                 <tbody>
                     {manufacturers.map(manufacturer => {
-                    return (
-                        <tr key={manufacturer.href}>
-                            <td>{ manufacturer.name }</td>
-                        </tr>
-                    );
+                        return (
+                            <tr key={manufacturer.href}>
+                                <td>{manufacturer.name}</td>
+                            </tr>
+                        );
                     })}
                 </tbody>
             </table>

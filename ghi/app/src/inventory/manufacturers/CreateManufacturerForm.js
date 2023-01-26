@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function CreateManufacturerForm() {
-    
+
 
     const [formData, setFormData] = useState({
         name: '',
@@ -25,7 +25,7 @@ function CreateManufacturerForm() {
             });
         }
     }
-        
+
     const handleFormChange = (e) => {
         const value = e.target.value;
         const inputName = e.target.name;
@@ -34,7 +34,7 @@ function CreateManufacturerForm() {
             [inputName]: value
         });
     }
-    
+
     return (
         <>
             <div className="row">

@@ -1,7 +1,7 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-function CreateAppointmentForm () {
-    
+function CreateAppointmentForm() {
+
     const [technicians, setTechnicians] = useState([]);
     const [formData, setFormData] = useState({
         vin: '',
@@ -11,7 +11,7 @@ function CreateAppointmentForm () {
         tech_name: '',
         reason: '',
     })
-    
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const appointmentUrl = 'http://localhost:8080/api/appointments/';
@@ -36,7 +36,7 @@ function CreateAppointmentForm () {
         }
 
     }
-        
+
 
     const handleFormChange = (e) => {
         const value = e.target.value;
@@ -55,10 +55,10 @@ function CreateAppointmentForm () {
             setTechnicians(data.technicians);
         }
     }
-    
+
     useEffect(() => {
         fetchData();
-        }, []);
+    }, []);
 
     return (
         <>
@@ -103,7 +103,7 @@ function CreateAppointmentForm () {
                 </div>
             </div>
         </>
-        
+
     );
 }
 
