@@ -30,6 +30,7 @@ function Nav() {
                 <li><hr className="dropdown-divider" /></li>
                 <NavLink className="nav-link " to="/vehicles">Vehicle Model List</NavLink>
                 <NavLink className="nav-link " to="/vehicles/new">Create a Vehicle Model</NavLink>
+                <li><hr className="dropdown-divider" /></li>
                 <NavLink className="nav-link" to="/manufacturers">Manufacturers</NavLink>
                 <NavLink className="nav-link" to="/manufacturers/new">Create a manufacturer</NavLink>
               </ul>
