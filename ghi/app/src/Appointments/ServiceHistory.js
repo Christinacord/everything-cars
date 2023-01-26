@@ -23,7 +23,7 @@ function ServiceHistory() {
             return appointments;
         } else {
             return appointments.filter((appointment) => 
-                appointment.vin.includes(filterValue)
+                appointment.vin.toLowerCase().includes(filterValue)
             );
         }
     };
