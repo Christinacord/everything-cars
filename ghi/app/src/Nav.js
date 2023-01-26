@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-// import Dropdown from 'react-bootstrap/dropdown'
+
 
 function Nav() {
   return (
@@ -30,6 +30,8 @@ function Nav() {
                 <li><hr className="dropdown-divider"/></li>
                 <NavLink className="nav-link " to="/vehicles">Vehicle Model List</NavLink>
                 <NavLink className="nav-link " to="/vehicles/new">Create a Vehicle Model</NavLink>
+                <NavLink className="nav-link" to="/manufacturers">Manufacturers</NavLink>
+                <NavLink className="nav-link" to="/manufacturers/new">Create a manufacturer</NavLink>
               </ul>
             </li>
             <li className="nav-item dropdown">
@@ -46,6 +48,17 @@ function Nav() {
               </a>
               <ul className="dropdown-menu dropdown-menu-dark">
                 <NavLink className="nav-link" to="/customers/new">Create an Customer</NavLink>
+              </ul>
+            </li>
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" >
+                Services
+              </a>
+              <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                <NavLink className="nav-link" to="/history">Get service history</NavLink>
+                <NavLink className="nav-link" to="/technicians/new">Enter a technician</NavLink>
+                <NavLink className="nav-link" to="/appointments/new">Enter a service appointment</NavLink>
+                <NavLink className="nav-link" to="/appointments">Appointments</NavLink>
               </ul>
             </li>
           </ul>
