@@ -35,7 +35,7 @@ function ServiceHistory() {
     return (
         <>
             <h1>Service history</h1>
-            <input onChange={handleChange} placeholder="Filter For VIN" />
+            <input onChange={handleChange} placeholder="Filter by VIN" />
             <table className="table table-striped">
                 <thead>
                     <tr>
