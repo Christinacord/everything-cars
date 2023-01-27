@@ -6,8 +6,6 @@ import json
 from .encoders import AppointmentEncoder, TechnicianEncoder
 
 
-
-
 @require_http_methods(["GET", "POST"])
 def api_list_appointments(request):
     if request.method == "GET":
@@ -40,6 +38,7 @@ def api_list_appointments(request):
             encoder=AppointmentEncoder,
             safe=False,
         )
+
 
 @require_http_methods(["DELETE", "GET"])
 def api_show_appointment(request, pk):
