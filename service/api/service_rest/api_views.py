@@ -31,13 +31,8 @@ def api_list_appointments(request):
             response = JsonResponse(
                 {"message": "Could not create the appointment"},
             )
-
-        appointment = Appointment.objects.create(**content)
-        return JsonResponse(
-            appointment,
-            encoder=AppointmentEncoder,
-            safe=False,
-        )
+            response.status_code = 400
+            return response
 
 
 @require_http_methods(["DELETE", "GET"])
