@@ -19,6 +19,16 @@ My Appointment model was created in order to create an instance of the model for
 
 Finally I created an AutomobileVO with a vin attribute. I set up my poller to pull a copy of the vin data from the Automobile model which resides in the Inventory microservice. I decided to implement the filtering for whether a VIN in the list of appointments is a VIN from inventory on the front-end in React in my AppointmentList component.
 
+The api_list_appointments function is set up for either GET or POST requests to the http://localhost:8080/api/appointments/ endpoint. It facilitates either going and fetching the data for all appointments at that endpoint or allows a new appointment to be created and saved to the database. I created the AppointmentsList component to show the list of appointments on the front-end and the CreateAppointmentForm component to facilitate creating a new appointment.
+
+The api_show_appointment function is set up for either a GET request to get a specific appointment or a DELETE request to delete a specific appointment at the http://localhost:8080/api/appointments/id/ endpoint.
+
+The api_list_technicians function is set up to allow either a GET or POST request to the http://localhost:8080/api/technicians/ endpoint. A GET request here fetches and returns a list of all technicians, while a POST requests allows a single technician to be created and saved to the database. I created the TechnicianList component to show the list of technicians on the front end and the CreateTechnicianForm component in the front end to facilitate adding a new technician.
+
+The api_show_technicians function is set up for either a GET request to get details about a specific technician or a DELETE request to delete a specific technician at the http://localhost:8080/api/technicians/id/.
+
+
+
 ## Sales microservice
 
 Explain your models and integration with the inventory
