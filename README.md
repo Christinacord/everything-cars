@@ -35,3 +35,12 @@ A Customer model was created to represent the information of Customer purchasing
 - Name of Customer
 - Address of Customer
 - Phone Number of Customer
+
+In this project we used view functions that takes web requests from the server and returns a web response.
+POST view functions for:
+ - Creating a Sales Record
+ - Creating a Sales Employee
+ - Creating a Customer
+GET view functions for:
+ - Listing all Sales Records
+

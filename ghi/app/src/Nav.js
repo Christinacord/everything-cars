@@ -37,10 +37,11 @@ function Nav() {
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" >
-                Sales People
+                New Employee
               </a>
               <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                <NavLink className="nav-link" to="/employees/new">Create an Employee</NavLink>
+                <NavLink className="nav-link" to="/employees/new">Create a Sales Person</NavLink>
+                <NavLink className="nav-link" to="/technicians/new">Create a technician</NavLink>
               </ul>
             </li>
             <li className="nav-item dropdown">
@@ -57,7 +58,6 @@ function Nav() {
               </a>
               <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 <NavLink className="nav-link" to="/history">Get service history</NavLink>
-                <NavLink className="nav-link" to="/technicians/new">Enter a technician</NavLink>
                 <NavLink className="nav-link" to="/appointments/new">Enter a service appointment</NavLink>
                 <NavLink className="nav-link" to="/appointments">Appointments</NavLink>
               </ul>

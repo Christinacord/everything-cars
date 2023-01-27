@@ -43,7 +43,7 @@ export default function SalesList() {
     }
 
     const filteredSales = () => {
-        if (filterValue === " ") {
+        if (filterValue === " " || filterValue === "Select a Sales Person") {
             return sales
         } else {
             return sales.filter((sale) =>
