@@ -17,6 +17,7 @@ function Nav() {
               </a>
               <ul className="dropdown-menu dropdown-menu-dark">
                 <NavLink className="nav-link" to="/sales">Sales List</NavLink>
+                <NavLink className="nav-link" to="/sales/history">Sales History</NavLink>
                 <NavLink className="nav-link" to="/sales/new">Create a Sale Record</NavLink>
               </ul>
             </li>
@@ -41,7 +42,8 @@ function Nav() {
               </a>
               <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                 <NavLink className="nav-link" to="/employees/new">Create a Sales Person</NavLink>
-                <NavLink className="nav-link" to="/technicians/new">Create a technician</NavLink>
+                <NavLink className="nav-link" to="/technicians/new">Create a Technician</NavLink>
+                <NavLink className="nav-link" to="/technicians">List of Technicians</NavLink>
               </ul>
             </li>
             <li className="nav-item dropdown">
