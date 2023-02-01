@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class AutomobileVO(models.Model):
-    vin = models.CharField(max_length=17)
+    vin = models.CharField(max_length=17, unique=True)
 
 
 class Technician(models.Model):

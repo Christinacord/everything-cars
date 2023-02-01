@@ -21,30 +21,30 @@ def api_list_sales(request):
             )
     else:
         content = json.loads(request.body)
-        try:
-            vin1 = content['automobile']
-            automobile = AutomobileVO.objects.get(vin=vin1)
-            content["automobile"] = automobile
+        # try:
+        vin1 = content['automobile']
+        automobile = AutomobileVO.objects.get(vin=vin1)
+        content["automobile"] = automobile
 
-            employee_ID = content["employee"]
-            employee = Employee.objects.get(employee_id=employee_ID)
-            content["employee"] = employee
+        employee_ID = content["employee"]
+        employee = Employee.objects.get(employee_id=employee_ID)
+        content["employee"] = employee
 
-            id2 = content["customer"]
-            customer = Customer.objects.get(id=id2)
-            content["customer"] = customer
+        id2 = content["customer"]
+        customer = Customer.objects.get(id=id2)
+        content["customer"] = customer
 
-            sale = Sale.objects.create(**content)
-            return JsonResponse(
-                sale,
-                encoder=SaleEncoder,
-                safe=False
-            )
-        except Exception:
-            return JsonResponse(
-                {"message": "Could not create sale"},
-                status=400
-            )
+        sale = Sale.objects.create(**content)
+        return JsonResponse(
+            sale,
+            encoder=SaleEncoder,
+            safe=False
+        )
+        # except Exception:
+        #     return JsonResponse(
+        #         {"message": "Could not create sale"},
+        #         status=400
+        #     )
 
 @require_http_methods(["GET", "DELETE"])
 def api_show_sale(request, pk):
